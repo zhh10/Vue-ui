@@ -1,0 +1,8 @@
+@import "../mixins/mixins.scss";
+
+@include b(sticky){
+    @include when(sticky){
+        position: fixed;
+        z-index:999;
+    }
+}

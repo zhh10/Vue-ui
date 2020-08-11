@@ -1,0 +1,57 @@
+@import '../mixins/mixins.scss';
+@import "../common/var.scss";
+
+@include b(upload){
+    @include m(main){
+        text-align: center;
+        width:150px;
+        padding:9px 15px;
+        background-color: $--upload-background-color;
+        color:$--upload-color;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+    @include m(tip){
+        color:$--upload-tip-color;
+        margin-top:$--upload-tip-margin-top;
+        font-size:$--upload-tip-font-size;
+    }
+    @include m(ul){
+        margin-top: 10px;
+        list-style:none;
+        padding:0;
+        margin:0;
+    }
+    @include m(li){
+        height:25px;
+        line-height: 25px;
+        position: relative;
+        font-size:$--upload-tip-font-size;
+        &:hover{
+            background-color: $--input-disabled-background-color;
+        }
+    }
+    @include m(a){
+        text-decoration: none;
+        color:$--upload-tip-color;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-right:40px;
+        display: block;
+
+        &.is-success{
+            color:$--color-success;
+        }
+        &.is-fail{
+            color:$--color-danger;
+        }
+    }
+    @include m(close){
+        position: absolute;
+        top:0;
+        right:5px;
+        cursor: pointer;
+    }
+
+}

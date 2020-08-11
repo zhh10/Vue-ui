@@ -1,0 +1,39 @@
+@import "../mixins/mixins.scss";
+@import "../common/var.scss";
+
+@include b(collapse){
+    width:$--collapse-width;
+    border-top:1px solid $--border-color-lighter;
+    border-bottom:1px solid $--border-color-lighter;
+    @include m(item){
+        &:not(:last-child){
+            border-bottom:1px solid $--border-color-lighter;
+        }
+    }
+    @include m(header){
+        padding-left:5px;
+        color: $--color-text-primary ;
+        background-color: #fff ;
+        cursor: pointer ;
+        font-size: $--collapse-header-fontsize ;
+        font-weight: $--collapse-header-fontweight ;
+        display: flex ;
+        justify-content: space-between;
+        height: $--collapse-header-height ;
+        line-height: $--collapse-header-line-height ;
+
+        &:hover{
+            background-color: $--color-primary-light-8;
+        }
+        & .el-icon{
+            transition: transform .3s linear;
+            &.is-active{
+                transform:rotate(180deg);
+            }
+        }
+    }
+    @include m(content){
+        font-size:$--collapse-header-fontsize ;
+        // margin:$--collapse-content-padding 0 ;        
+    }
+}

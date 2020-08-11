@@ -1,0 +1,7 @@
+@import '../common/var.scss';
+@import '../mixins/mixins.scss';
+
+@include b(aside){
+    box-sizing:border-box;
+    padding:$--aside-padding;
+}

@@ -1,0 +1,50 @@
+@import "../mixins/mixins.scss";
+@import "../common/var.scss";
+
+@include b(pager){
+    list-style:none;
+    display:inline-block;
+    vertical-align: middle;
+    font-size:0;
+    padding:0;
+    margin:0;
+    @include m(item){
+        display: inline-block;
+        font-size:$--font-size-base; //14
+        min-width:$--pager-min-width;
+        height:$--pager-min-height;
+        line-height: $--pager-min-height;
+        box-sizing: border-box;
+        text-align: center;
+        padding:0 4px;
+        margin:0 5px;
+        background-color: #fff;
+        color: $--color-text-regular;
+        border-radius: 2px;
+        cursor: pointer;
+        border:1px solid transparent;
+        &:not([class*='disabled']):hover{
+            color:$--color-primary;
+            border:1px solid $--color-primary;
+        }
+        &[class*='ellipsis']:hover{
+            color:$--color-primary;
+            border-color:transparent;
+        }
+        @include when(active){
+            color:$--color-primary;
+            font-weight: 500;
+
+        }
+        @include when(disabled){
+            cursor: not-allowed;
+        }
+
+        & .icon{
+            vertical-align: middle;
+            width:$--pager-min-width;
+            height:$--pager-min-height;
+            line-height: $--pager-min-height;
+        }
+    }
+}

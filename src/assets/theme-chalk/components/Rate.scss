@@ -1,0 +1,22 @@
+@import "../mixins/mixins.scss";
+@import "../common/var.scss";
+
+@include b(rate){
+    @include m(item){
+        text-align: center;
+    }
+    @include m(Officon){
+        font-size:18px;
+        color:$--color-text-placeholder;
+        transition: .3s;
+    }
+    @include m(Onicon){
+        font-size:18px;
+        color:rgb(247, 186, 42);
+        transition: .3s;
+    }
+    @include m(text){
+        margin-left:5px;
+        color:rgb(247, 186, 42);
+    }
+}

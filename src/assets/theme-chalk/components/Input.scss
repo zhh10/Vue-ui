@@ -1,0 +1,87 @@
+@import '../mixins/mixins.scss';
+@import "../common/var.scss";
+
+
+@include b(input){
+    width:$--input-width;
+    position: relative;
+    font-size:$--font-size-base;
+    display: inline-block;
+    
+    @include m(suffix){
+        .el-input--inner{
+            padding-right: 30px;
+        }
+    }
+    @include m(icon){
+        .el-input--inner{
+            padding-left:30px;
+        }
+    }
+
+    @include m(inner){
+        background-color: #fff;
+        background-image:none;
+        border-radius: $--border-radius-base;
+        border:1px solid $--border-color-base;
+        box-sizing:border-box;
+        color:$--color-text-regular;
+        display: inline-block;
+        font-size:inherit;
+        height:$--input-height;
+        line-height: $--input-line-height;
+        outline:none;
+        padding:$--input-padding-vertical $--input-padding-horizontal;
+        transition:border-color .2s cubic-bezier(.645,.045,.355,1);
+        width:100%;
+
+        &:hover{
+            border-color:$--color-text-placeholder;
+        }
+        &:focus{
+            outline:none;
+            border-color:$--color-primary;
+        }
+        @include when(disabled){
+            cursor:not-allowed;
+            background-color: $--input-disabled-background-color;
+            border-color:$--input-disabled-border-color;
+            color:$--input-disabled-color;
+        }
+    }
+    .el-input__suffix{
+        position: absolute;
+        height:100%;
+        top:0;
+        right:5px;
+        text-align: center;
+        color:$--color-text-placeholder;
+        transition:all .3s;
+        pointer-events: none;
+        .el-input__suffix__inner{
+            pointer-events: all;
+            .el-input-icon{
+                width:25px;
+                line-height: 40px;
+                cursor: pointer;
+            }
+        }
+    }
+    .el-input__icon{
+        position: absolute;
+        height:100%;
+        top:0;
+        left:5px;
+        text-align: center;
+        color:$--color-text-placeholder;
+        transition:all .3s;
+        pointer-events: none;
+        .el-input__icon__inner{
+            pointer-events: none;
+            .el-input-icon{
+                width:25px;
+                line-height: 40px;
+            }
+        }
+    }
+}

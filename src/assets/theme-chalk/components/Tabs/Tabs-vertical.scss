@@ -1,0 +1,12 @@
+@import '../../common/var.scss';
+@import '../../mixins/mixins.scss';
+
+@include b(tabsHeader){
+    @include when(vertical){
+        float:left;
+        @at-root & + .el-tabsContent{
+            padding:5px;
+            float:left;
+        }
+    }
+}

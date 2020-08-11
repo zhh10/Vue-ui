@@ -1,0 +1,69 @@
+@import "../mixins/mixins.scss";
+@import "../common/var.scss";
+
+@include b(table){
+    @include m(wrapper){
+        display: flex;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+    }
+    @include m(Copy){
+        position: absolute;
+        top:0;
+        left:0;
+        width:100%;
+    }
+    @include m(tableWrapper){
+        width:100%;
+        display:flex;
+    }
+    @include m(item){
+        padding:10px 0px;
+        text-align: center;
+        // border:1px solid $--border-color-lighter;
+        border-bottom: 1px solid $--border-color-lighter;
+        transition: background-color .3s linear;
+    }
+    @include m(header){
+        padding:10px 0;
+        border-bottom:1px solid $--border-color-lighter;
+        background-color: #fff;
+    }
+    @include m(body){
+        > tr {
+            &:nth-child(odd){
+                background-color: $--table-background-color ;
+            }
+            &:nth-child(even){
+                background-color: #fff;
+                &:hover{
+                    background-color: $--table-background-color ;
+                }
+            }
+        } 
+    }
+    
+}
+@include b(table){
+    flex:1;
+    color: $--color-text-regular;
+    max-width:100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    @include when(border){
+        border: 1px solid $--border-color-lighter;
+        .el-table--header{
+            border: 1px solid $--border-color-lighter;
+        }
+        .el-table--item{
+            border: 1px solid $--border-color-lighter;
+        }
+    }
+    @include when(compact){
+        .el-table--header,.el-table--item{
+            padding:4px 0;
+        }
+    }
+    
+}
