@@ -627,11 +627,12 @@ Jquery是一个高效的、精简并且功能丰富的JavaScript工具库
             <el-step title="成功" icon="folder-checked" description="上传成功！"></el-step>
         </el-steps>
         <h1>拖拽</h1>
-        {{dragData}}
-        <el-drag-wrap :data.sync="dragData">
-            <el-drag-item v-for="(data,index) in dragData" :key="index" >
-                <div style="width:100px;height:100px;background-color:#abcdef;margin-bottom:10px;">{{data}}</div>
-            </el-drag-item>
+        <el-drag-wrap :data.sync="dragData">   
+            <template v-for="(item) in dragData">
+                <el-drag-item :key="item">
+                    <div style="width:100px;height:100px;background-color:#abcdef;margin-bottom:10px;">{{item}}</div>
+                </el-drag-item>
+            </template>
         </el-drag-wrap>
     </div>
 </template>
@@ -732,7 +733,7 @@ export default {
               this.StepsActive = 0
           }
       },
-      dragData : [1,2,3,4,5,6,7]
+      dragData : ['a','b','c','d']
     }
   },
   methods: {

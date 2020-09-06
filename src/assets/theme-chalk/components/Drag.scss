@@ -3,7 +3,7 @@
 
 @include b(drag){
     @include m(wrap){
-        display:flex;
+        // display:flex;
     }
     @include m(dragable){
         cursor: pointer;

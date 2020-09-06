@@ -19,6 +19,9 @@ export default {
             children:[],
         }
     },
+    mounted(){
+        console.log(this.children)
+    },
     created(){
         this.EventBus.$on('dragstart',this.onDragStart)
         this.EventBus.$on('dragenter',this.onDragEnter)
@@ -51,6 +54,8 @@ export default {
             order.forEach((item,index) => {
                 newData[index] = this.data[item]
             })
+            console.log(newData)
+            this.children = realList
             this.$emit('update:data',newData)
 
         },

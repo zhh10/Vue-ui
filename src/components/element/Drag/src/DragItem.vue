@@ -1,5 +1,5 @@
 <template>
-    <div class="el-drag--item __drag_item" :draggable="drag"
+    <div class="el-drag--item" :draggable="drag"
     @dragstart.stop="ondragStart"
     @dragenter.stop="ondragEnter"
     @dragend.stop="ondragEnd"
@@ -24,7 +24,6 @@ export default {
             this.EventBus.$emit('dragstart',this.$el)
         },
         ondragEnter(){
-            console.log('dragenter')
             this.EventBus.$emit('dragenter',this.$el)
         },
         ondragEnd(){
@@ -34,19 +33,3 @@ export default {
     }
 }
 </script>
-<style scoped>
-.__drag_item {
-  animation: shake 0.3s;
-}
-@keyframes shake {
-  0% {
-    transform: translate3d(-10%, 0, 0);
-  }
-  50% {
-    transform: translate3d(10%, 0, 0);
-  }
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-}
-</style>
