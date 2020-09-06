@@ -6,8 +6,8 @@
         {{title}}
         <el-icon name="arrow-up" :class="{'is-active':isShow}" style="margin-right:5px;"></el-icon>
         </div>
-        <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter"
-        @before-leave="beforeLeave" @leave="leave" @after-leave="afterLeave">
+        <transition  @enter="enter" @after-enter="afterEnter"
+         @leave="leave" @after-leave="afterLeave">
             <div class="el-collapse--content" ref="slot"
             v-show = 'isShow'>
               <slot></slot>
@@ -52,39 +52,26 @@ export default {
       }
     },
 
-    beforeEnter(el) {
-      el.style.transition = 'height .2s linear,margin-top .2s linear,margin-bottom .2s linear';
-      el.style.height = 0;
-      el.style.margin = 0;
+    enter(el,done){
+      let {height} = el.getBoundingClientRect()
+      el.style.height = 0
+      el.getBoundingClientRect() 
+      el.style.height = `${height}px`
+      el.addEventListener('transitioned',()=>{done()})
     },
-    enter(el) {
-      if (el.scrollHeight !== 0) {
-        el.style.height = `${el.scrollHeight}px`;
-        el.style.margin = '20px 5px';
-      } else {
-        el.style.height = '';
-      }
+    afterEnter(el){
+      el.style.height = 'auto'
     },
-    afterEnter(el) {
-      el.style.transition = '';
-      // el.style.height = '';
+    leave(el,done){
+      let {height} = el.getBoundingClientRect()
+      el.style.height = `${height}px`
+      el.getBoundingClientRect()
+      el.style.height = 0
+      el.addEventListener('transitionend',()=>{done()})
     },
-    beforeLeave(el) {
-      el.style.height = `${el.scrollHeight}px`;
-      el.style.margin = '20px 5px';
-    },
-    leave(el) {
-      if (el.scrollHeight !== 0) {
-        el.style.transition = 'height .2s linear,margin-top .2s linear,margin-bottom .2s linear';
-        el.style.height = 0;
-        el.style.margin = 0;
-      }
-    },
-    afterLeave(el) {
-      el.style.transition = '';
-      el.style.height = '';
-      el.style.margin = 0;
-    },
+    afterLeave(el){
+      el.style.height = 'auto'
+    }
   },
 };
 </script>

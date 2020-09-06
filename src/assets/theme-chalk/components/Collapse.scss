@@ -33,6 +33,8 @@
         }
     }
     @include m(content){
+        overflow: hidden;
+        transition:height .3s linear;
         font-size:$--collapse-header-fontsize ;
         // margin:$--collapse-content-padding 0 ;        
     }

@@ -18,7 +18,15 @@ import Table from '@element/Table';
 import Sticky from '@element/Sticky';
 import Rate from '@element/Rate';
 import Upload from '@element/Upload';
-
+import Bread_ from '@element/Breadcrumb';
+import Message from '@element/Message';
+import MessageBox from '@element/MessageBox';
+import Switch from '@element/Switch';
+import Notify from '@element/Notify';
+import Cascader_ from '@element/Cascader';
+import Slides_ from '@element/Slides';
+import Steps_ from '@element/Steps';
+import Drag_ from "@element/Drag";
 const {
   Tabs,
   TabsHeader,
@@ -27,7 +35,11 @@ const {
   TabsContentItem,
 } = Tabs_;
 const { Collapse, CollapseItem } = Collapse_;
-
+const { Breadcrumb,BreadcrumbItem } = Bread_
+const {Cascader,CascaderItem} = Cascader_;
+const {Slides,SlidesItem} = Slides_;
+const {Steps,Step} = Steps_;
+const {DragWrap,DragItem} = Drag_;
 const components = [
   Row,
   Col,
@@ -49,11 +61,25 @@ const components = [
   Sticky,
   Rate,
   Upload,
+  Breadcrumb,
+  BreadcrumbItem,
+  Message,
+  MessageBox,
+  Switch,
+  Notify,
+  Cascader,CascaderItem,
+  Slides,SlidesItem,
+  Steps,Step,
+  DragWrap,DragItem,
 ];
 
 const install = (Vue) => {
   components.forEach((item) => {
-    Vue.component(item.name, item);
+    if(item.name === 'ElMessage'||item.name === "ElMessageBox"||item.name==="ElNotify"){
+        item.install(Vue)
+    }else{
+        Vue.component(item.name, item);
+    }
   });
 };
 
@@ -84,6 +110,13 @@ export default {
   Sticky,
   Rate,
   Upload,
+  Breadcrumb,
+  BreadcrumbItem,
+  Switch,
+  Cascader,CascaderItem,
+  Slides,SlidesItem,
+  Steps,Step,
+  DragWrap,DragItem,
 };
 
 export {
@@ -107,5 +140,12 @@ export {
   Table,
   Sticky,
   Rate,
-  Upload
+  Upload,
+  Breadcrumb,
+  BreadcrumbItem,
+  Switch,
+  Cascader,CascaderItem,
+  Slides,SlidesItem,
+  Steps,Step,
+  DragWrap,DragItem
 };

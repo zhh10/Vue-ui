@@ -1,0 +1,55 @@
+@import "../mixins/mixins.scss";
+@import "../common/var.scss";
+
+@include b(message){
+    font-size:$--font-size-base;
+    padding:15px 15px 15px 20px;
+    display:flex;
+    z-index:999999;
+    align-items: center;
+    min-width:380px;
+    box-sizing:border-box;
+    border-radius: 4px;
+    border:1px solid $--border-color-lighter;
+    box-shadow: 0 2px 8px rgba(0,0,0,.15);
+    position: fixed;
+    left:50%;
+    top:20px;
+    transform: translateX(-50%);
+    transition:opacity .3s,transform .4s,top .4s;
+    @include m(text){
+        width:100%;
+        padding-right:15px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    @include m(icon){
+        font-size:16px;
+        margin-right:15px;
+    }
+    @include m(close){
+        cursor: pointer;
+        text-align: center;
+        width:15px;
+        cursor: pointer;
+        position: absolute;
+        right:15px;
+    }
+    @include when(success){
+        background-color: $--message-success-background-color;
+        color:$--color-success;
+    }
+    @include when(info){
+        color:$--color-info;
+        background-color: $--message-info-background-color;
+    }
+    @include when(error){
+        color:$--color-danger;
+        background-color: $--message-error-background-color;
+    }
+    @include when(warning){
+        color:$--color-warning;
+        background-color:$--message-warning-background-color;
+    }
+}

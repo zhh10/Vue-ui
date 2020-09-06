@@ -1,0 +1,62 @@
+@import '../mixins/mixins.scss';
+@import "../common/var.scss";
+
+@include b(cascader){
+    @include m(Item){
+        background-color: #fff;
+        margin-top: 5px;
+        position: absolute;
+        z-index:1;
+        display: flex;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        border:1px solid $--border-color-light;
+        overflow: hidden;
+        box-sizing: border-box;
+        transition:height .3s linear;
+    }
+}
+
+@include b(cascaderItem){
+    display:flex;
+    height:100%;
+    align-flex:flex-start;
+    justify-content: flex-start;
+
+    @include m(left){
+        list-style: none;
+        height:100%;
+        overflow: auto;
+        padding:0;
+        margin-top:0;
+    }
+    @include m(li){
+        position: relative;
+        margin-top:5px;
+    }
+    @include m(text){
+        display: inline-block;
+        width:80px;
+        padding-right:20px;
+        margin-left:10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        cursor: pointer;
+        color:$--color-text-primary;
+       
+    }
+    @include m(icon){
+        position: absolute;
+        top:0;
+        right:0px;
+        font-size:18px;
+        color:$--border-color-base;
+    }
+    @include m(right){
+        overflow:hidden;
+        transition:height .3s linear;
+        height:100%;
+        border-left:1px solid $--border-color-light;
+    }
+}
+

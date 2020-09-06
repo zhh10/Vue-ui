@@ -173,7 +173,6 @@ $--pager-min-width:30px !default;
 $--pager-min-height:28px !default;
 /** Table
 -----------------------------*/
-
 $--table-background-color:mix(#fff,#ecf5ff,50%) !default;
 /** Upload
 -----------------------------*/
@@ -182,6 +181,43 @@ $--upload-color:$--color-white !default;
 $--upload-tip-color:$--color-text-regular !default;
 $--upload-tip-margin-top:7px !default;
 $--upload-tip-font-size:12px !default;
+/**Breadcrumb
+----------------------------*/
+$--breadcrumb-font-size: $--font-size-base !default;
+/**Message
+-----------------------------*/
+$--message-success-background-color:mix($--color-white,$--color-success,90%) !default;
+$--message-info-background-color: $--color-info-lighter !default;
+$--message-warning-background-color:mix($--color-white,$--color-warning,90%) !default;
+$--message-error-background-color:mix($--color-white,$--color-danger,90%) !default;
+/**Switch
+-----------------------------*/
+$--switch-true-default:$--color-success;
+$--switch-false-default:#dedfe6 !default;
+/**Notify
+-----------------------------*/
+$--notify-width:330px !default;
+$--notify-border-color:#ebeef5 !default;
+$--notify-top:20px !default;
+$--notify-bottom:20px !default;
+$--notify-left:20px !default;
+$--notify-right:20px !default;
+/**Cascader
+-----------------------------*/
+$--cascaderItem-min-width:80px !default;
+/**Steps
+-----------------------------*/
+$--steps-number-width:24px !default;
+$--steps-number-height:24px !default;
+$--steps-number-font-size:14px !default;
+
+$--steps-icon-width:40px !default;
+$--steps-icon-height:24px !default;
+$--steps-icon-font-size:24px !default;
+
+$--steps-waiting-color:#c0c4cc !default;
+$--steps-success-color:#67c23a !default;
+$--steps-doing-color:#303133 !default;
 // Break Point -------------------
 $--sm:768px;
 $--md:992px;

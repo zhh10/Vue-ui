@@ -1,0 +1,64 @@
+@import "../mixins/mixins.scss";
+@import "../common/var.scss";
+
+@include b(messagebox){
+    position:fixed;
+    z-index:100;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background: rgba(0,0,0,.2);
+    text-align: center;
+    @include m(info){
+        position: absolute;
+        left:50%;
+        top:50%;
+        transform: translate(-50%,-50%);
+        width:420px;
+        padding-bottom:10px;
+        background-color:#fff;
+        border-radius: 4px;
+        border:1px solid $--border-color-lighter;
+        font-size:18px;
+        box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+        overflow: hidden;
+    }
+    @include m(title){
+        text-align: left;
+        padding:15px 15px 10px;
+    }
+    @include m(message){
+        display: flex;
+        align-items: center;
+        padding:10px 15px;
+        font-size:$--font-size-base;
+        color:$--color-text-regular;
+    }
+    @include m(icon){
+        font-size:18px;
+        margin-right:10px;
+        @include when(success){
+            color:$--color-success;
+        }
+        @include when(info){
+            color:$--color-info;
+        }
+        @include when(error){
+            color:$--color-danger;
+        }
+        @include when(warning){
+            color:$--color-warning;
+        }
+    }
+    @include m(buttonWrapper){
+        padding:5px 15px 0;
+        text-align: right;
+    }
+    @include m(close){
+        cursor: pointer;
+        position: absolute;
+        top:15px;
+        right:15px;
+    }
+}

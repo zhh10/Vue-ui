@@ -3,6 +3,6 @@
 @include b(sticky){
     @include when(sticky){
         position: fixed;
-        z-index:999;
+        z-index:100;
     }
 }

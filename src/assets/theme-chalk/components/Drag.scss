@@ -1,0 +1,14 @@
+@import '../mixins/mixins.scss';
+@import "../common/var.scss";
+
+@include b(drag){
+    @include m(wrap){
+        display:flex;
+    }
+    @include m(dragable){
+        cursor: pointer;
+    }
+    @include m(unable){
+        cursor:not-allowed;
+    }
+}

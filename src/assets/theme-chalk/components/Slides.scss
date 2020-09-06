@@ -1,0 +1,60 @@
+@import "../mixins/mixins.scss";
+@import "../common/var.scss";
+
+@include b(slides){
+    display:inline-block;
+    position: relative;
+    @include m(wrapper){    
+        display: flex;
+        overflow:hidden;
+    }
+    @include m(dots){
+        position: absolute;
+        display:inline-block;
+        bottom:10px;
+        left:50%;
+        transform:translateX(-50%);
+        float:left;
+        list-style: none;
+        padding:0;
+        margin:0;
+
+        @include when('outside'){
+            bottom:-20px;
+        }
+    }
+    @include m(dot){
+        cursor: pointer;
+        display:inline-block;
+        width:15px;
+        height:3px;
+        margin:5px;
+        background-color:$--color-text-secondary;
+        transition: width .5s;
+        @include when(active){
+            background-color: $--border-color-base;
+            width: 30px;
+        }
+
+    }
+    @include m(btn){
+        position: absolute;
+        cursor: pointer;
+        top:50%;
+        transform:translateY(-50%);
+    }
+    @include m(left){
+        left:0;
+    }
+    @include m(right){
+        right:0;
+    }
+    @include m(itemWrapper){
+        position: relative;
+    }
+
+    @include m(item){
+        position: absolute;
+    }
+}
+    

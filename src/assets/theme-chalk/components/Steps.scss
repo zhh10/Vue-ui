@@ -1,0 +1,116 @@
+@import "../mixins/mixins.scss";
+@import "../common/var.scss";
+
+@include b(steps){
+    display:flex;
+
+    .el-step--item:last-child{
+        .el-step--line{
+            display: none;
+        }
+    }
+}
+
+@include b(step){
+    @include m(item){
+        flex:1;
+    }
+    @include m(head){
+        position: relative;
+        width:100%;
+    }
+    @include m(number){
+        width:$--steps-number-width;
+        height:$--steps-number-height;
+        font-size:$--steps-number-font-size;
+        border-radius: 50%;
+        background-color:#fff;
+        box-sizing: border-box;
+        border:2px solid $--steps-waiting-color;
+        color:$--steps-waiting-color;
+        transition: all .2s ease-in;
+        display: flex;
+        justify-content:center;
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+        z-index:1;
+    }
+    @include m(icon){
+        width:$--steps-icon-width;
+        height:$--steps-icon-height;
+        font-size:$--steps-icon-font-size;
+        background-color: #fff;
+        color:$--steps-waiting-color;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        overflow:hidden;
+        position: relative;
+        z-index:1;
+        transition: all .2s ease-out;
+
+    }
+    @include m(line){
+        width:100%;
+        height:2px;
+        position: absolute;
+        top:50%;
+        transform:translateY(-50%);
+        background-color: $--steps-waiting-color;
+        transition: all .2s ease-out ;
+        
+    }
+    @include m(text){
+        color:$--steps-waiting-color;
+        display: flex;
+        width:$--steps-icon-width;
+        @include when(icon){
+            justify-content: center;
+        }
+    }
+    @include m(description){
+        padding-right:10%;
+        margin-top:5px;
+        font-size:12px;
+        color:$--steps-waiting-color;
+    }
+
+}
+@include b(step){
+    @include m(item){
+        @include when(success){
+            .el-step--number{
+                border-color: $--steps-success-color;
+                color:$--steps-success-color;
+            }
+            .el-step--icon{
+                color:$--steps-success-color;
+            }
+            .el-step--line{
+                background-color: $--steps-success-color;
+            }
+            .el-step--text{
+                color:$--steps-success-color;
+            }
+            .el-step--description{
+                color:$--steps-success-color;
+            }
+        }
+        @include when(doing){
+            .el-step--number{
+                border-color: $--steps-doing-color;
+                color:$--steps-doing-color;
+            }
+            .el-step--icon{
+                color:$--steps-doing-color;
+            }
+            .el-step--text{
+                color: $--steps-doing-color;
+            }
+            .el-step--description{
+                color:$--steps-doing-color;
+            }
+        }
+    }
+}

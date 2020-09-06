@@ -1,0 +1,67 @@
+@import "../mixins/mixins.scss";
+@import "../common/var.scss";
+
+@include b(notify){
+    display:flex;
+    width:$--notify-width;
+    padding:14px 26px 14px 13px;
+    border-radius: 8px;
+    box-sizing:border-box;
+    border:1px solid $--notify-border-color;
+    position: fixed;
+    background-color: #fff;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+    overflow: hidden;
+    transition:all .3s;
+    z-index:250;
+    @include m(topLeft){
+        top:$--notify-top;
+        left:$--notify-left;
+    }
+    @include m(topRight){
+        top:$--notify-top;
+        right:$--notify-right;
+    }
+    @include m(bottomLeft){
+        bottom:$--notify-bottom;
+        left:$--notify-left;
+    }
+    @include m(bottomRight){
+        bottom:$--notify-bottom;
+        right:$--notify-right;
+    }
+    @include m(wrapper){
+        margin-left:13px;
+        margin-right:8px;
+    }
+    @include m(title){
+        color:$--color-text-primary;
+        font-weight:700;
+        font-size:16px;
+    }
+    @include m(message){
+        color:$--color-text-regular;
+        font-size:14px;
+        margin:6px 0;
+    }
+    @include m(close){
+        position: absolute;
+        top:14px;
+        right:26px;
+        cursor: pointer;
+    }
+    @include m(icon){
+        @include when(success){
+            color:$--color-success;
+        }
+        @include when(info){
+            color:$--color-info;
+        }
+        @include when(error){
+            color:$--color-danger;
+        }
+        @include when(warning){
+            color:$--color-warning;
+        }
+    }  
+}

@@ -1,0 +1,46 @@
+@import "../mixins/mixins.scss";
+@import "../common/var.scss";
+
+@include b(switch){
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size:14px;
+    @include m(wrapper){
+        display: inline-block;
+        position: relative;
+        transition: all .3s linear;
+        cursor: pointer;
+        background:$--switch-false-default;
+        @include when(active){
+            background-color: $--switch-true-default;
+            .el-switch--inner{
+                margin-left:50%;
+            }
+        }
+        @include when(disabled){
+            cursor: not-allowed;
+            background-color:#ddd;
+        }
+    }
+    @include m(inner){
+        display: block;
+        background-color: #fff;
+        border-radius: 50%;
+        position: absolute;
+        top:50%;
+        left:2px;
+        transform:translateY(-50%);
+        transition:all .3s linear;
+        margin-left:0;
+    }
+    @include m(text){
+        margin:0 10px;
+        color:$--color-text-primary;
+        cursor: pointer;
+        font-size:14px;
+        @include when(textactive){
+            
+        }
+    }
+}

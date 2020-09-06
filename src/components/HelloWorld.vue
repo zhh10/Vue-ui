@@ -384,16 +384,16 @@
         <el-row>
             <el-collapse :selected.sync = "selected">
                 <el-collapse-item title="Vue" name="1">
-                    <div>Vue是一个渐进式JavaScript 框架</div>
+                    Vue是一个渐进式JavaScript 框架
                 </el-collapse-item>
                 <el-collapse-item title="React" name="2">
-                    <div>React用于构建用户界面的JavaScript库</div>
+                    React用于构建用户界面的JavaScript库
                 </el-collapse-item>
                 <el-collapse-item title="Webpack" name="3">
-                    <div>Webpack是一个现代的JavaScript应用程序的静态模块打包器</div>
+                    Webpack是一个现代的JavaScript应用程序的静态模块打包器
                 </el-collapse-item>
                 <el-collapse-item title="Jquery" name="4">
-                    <div>Jquery是一个高效的、精简并且功能丰富的JavaScript工具库</div>
+Jquery是一个高效的、精简并且功能丰富的JavaScript工具库
                 </el-collapse-item>
             </el-collapse>
         </el-row>
@@ -403,16 +403,16 @@
         <el-row>
             <el-collapse :selected.sync = "selected" mode="signal">
                 <el-collapse-item title="Vue" name="1">
-                    <div>Vue是一个渐进式JavaScript 框架</div>
+                    Vue是一个渐进式JavaScript 框架
                 </el-collapse-item>
                 <el-collapse-item title="React" name="2">
-                    <div>React用于构建用户界面的JavaScript库</div>
+                    React用于构建用户界面的JavaScript库
                 </el-collapse-item>
                 <el-collapse-item title="Webpack" name="3">
-                    <div>Webpack是一个现代的JavaScript应用程序的静态模块打包器</div>
+                    Webpack是一个现代的JavaScript应用程序的静态模块打包器
                 </el-collapse-item>
                 <el-collapse-item title="Jquery" name="4">
-                    <div>Jquery是一个高效的、精简并且功能丰富的JavaScript工具库</div>
+                    Jquery是一个高效的、精简并且功能丰富的JavaScript工具库
                 </el-collapse-item>
             </el-collapse>
         </el-row>
@@ -474,7 +474,6 @@
         <el-row>
             <el-rate show-text v-model="score"></el-rate>
         </el-row>
-        {{fileList}}
         <h1>文件上传</h1>
         <div style="width:360px;">
             <el-upload :action="action" :method="method" :accept="accept" :name="name"
@@ -485,8 +484,10 @@
             >
             </el-upload>
         </div>
+        <br />
+        <br />
+        <br />
         <h1>文件大小限制</h1>
-        {{fileList1}}
         <div style="width:360px">
             <el-upload :action="action" :method="method" :accept="accept" :name="name"
                 :parseResponse="parseResponse"
@@ -496,10 +497,142 @@
                 :sizeLimit="sizeLimit"
             ></el-upload>
         </div>
+        <h1>禁用文件上传</h1>
+        <div style="width:360px">
+            <el-upload :action="action" :method="method" :accept="accept" :name="name"
+                :parseResponse="parseResponse"
+                :fileList.sync="fileList1"
+                :showTip="showTip"
+                :on-remove="handleRemove"
+                :sizeLimit="sizeLimit"
+                disabled
+            ></el-upload>
+        </div>
+        {{fileList2}}
+        <h1>多文件上传</h1>
+        <div style="width:360px">
+            <el-upload :action="action" :method="method" :accept="accept" :name="name"
+                :parseResponse="parseResponse"
+                :fileList.sync="fileList2"
+                :showTip="showTip"
+                :on-remove="handleRemove"
+                multiple
+            ></el-upload>
+        </div>
+        <h1>面包屑(默认分隔符)</h1>
+        <el-breadcrumb>
+            <el-breadcrumb-item to="/">首页</el-breadcrumb-item>
+            <el-breadcrumb-item>管理系统</el-breadcrumb-item>
+            <el-breadcrumb-item>学生管理</el-breadcrumb-item>
+            <el-breadcrumb-item>课堂点名</el-breadcrumb-item>
+        </el-breadcrumb>
+        <h1>自定义分隔符</h1>
+        <el-breadcrumb separator='arrow-right'>
+            <el-breadcrumb-item to="/">首页</el-breadcrumb-item>
+            <el-breadcrumb-item to="/">管理系统</el-breadcrumb-item>
+            <el-breadcrumb-item>学生管理</el-breadcrumb-item>
+            <el-breadcrumb-item>课堂点名</el-breadcrumb-item>
+        </el-breadcrumb>
+        <el-breadcrumb separator='s-promotion'>
+            <el-breadcrumb-item to="/">首页</el-breadcrumb-item>
+            <el-breadcrumb-item replace="/">管理系统</el-breadcrumb-item>
+            <el-breadcrumb-item>学生管理</el-breadcrumb-item>
+            <el-breadcrumb-item>课堂点名</el-breadcrumb-item>
+        </el-breadcrumb>
+        <h1>消息提示(支持html字段)</h1>
+        <el-button @click="handleSuccess">成功</el-button>
+        <el-button @click="handleInfo">信息</el-button>
+        <el-button @click="handleWarning">警告</el-button>
+        <el-button @click="handleError">危险</el-button>
+        <h1>消息弹框(支持html字段)</h1>
+        <el-button @click="handleConfirm">确认消息</el-button>
+        <el-button @click="handleNotice">提示消息</el-button>
+        <el-button @click="handleWarn">警告弹框</el-button>
+        <h1>Switch开关</h1>
+        <el-row>
+            <el-switch v-model="switchValue"></el-switch>
+        </el-row>
+        <el-row>
+            <el-switch disabled></el-switch>
+        </el-row>
+        <el-row>
+            <el-switch trueColor="red" falseColor="blue" 
+            trueText='开启服务' falseText="暂不开启"
+            v-model="switchValue" trueTextColor="red" falseTextColor="blue"></el-switch>
+        </el-row>
+        <h1>Notify通知</h1>
+        <el-row>
+            <el-button @click="handleNotify">通知</el-button>
+        </el-row>
+        <h1>四个方向</h1>
+        <el-row>
+            <el-button @click="handleNotify1">左上</el-button>
+            <el-button @click="handleNotify2">左下</el-button>
+            <el-button @click="handleNotify3">右上</el-button>
+            <el-button @click="handleNotify4">右下</el-button>
+        </el-row>
+        <h1>Cascader级联选择器</h1>
+        <div>
+            {{Cascader_value}}
+            <el-cascader :dataSource="Cascader_data" 
+            :height="Cascader_height"
+            :value.sync="Cascader_value"></el-cascader>
+        </div>
         <br />
         <br />
         <br />
         <br />
+        <br />
+        {{slidesSelected}}
+        <h1>轮播图</h1>
+        <el-slides :selected.sync="slidesSelected" width="300px" height="200px" showDots type="slide">
+            <el-slides-item name="1"><div style="width:300px;height:200px;" class="bg-purple">1</div></el-slides-item>
+            <el-slides-item name="2"><div style="width:300px;height:200px;" class="bg-purple-light">2</div></el-slides-item>
+            <el-slides-item name="3"><div style="width:300px;height:200px;" class="bg-purple-dark">3</div></el-slides-item>
+        </el-slides>
+        <h1>淡入淡出</h1>
+        <el-row>
+            <el-slides :selected.sync="slidesSelected1" width="300px" height="200px" type="fade" showDots>
+                <el-slides-item name="1"><div style="width:300px;height:200px;" class="bg-purple">1</div></el-slides-item>
+                <el-slides-item name="2"><div style="width:300px;height:200px;" class="bg-purple-light">2</div></el-slides-item>
+                <el-slides-item name="3"><div style="width:300px;height:200px;" class="bg-purple-dark">3</div></el-slides-item>
+            </el-slides>
+        </el-row>
+        <h1>展示按钮</h1>
+        <el-row>
+            <el-slides :selected.sync="slidesSelected2" width="300px" height="200px" showDots showBtn>
+                <el-slides-item name="1"><div style="width:300px;height:200px;" class="bg-purple">1</div></el-slides-item>
+                <el-slides-item name="2"><div style="width:300px;height:200px;" class="bg-purple-light">2</div></el-slides-item>
+                <el-slides-item name="3"><div style="width:300px;height:200px;" class="bg-purple-dark">3</div></el-slides-item>
+            </el-slides>
+        </el-row>
+        <h1>指示器在外面下方</h1>
+        <el-row>
+        <el-slides :selected.sync="slidesSelected" direction="outside" width="300px" height="200px" showDots type="slide">
+            <el-slides-item name="1"><div style="width:300px;height:200px;" class="bg-purple">1</div></el-slides-item>
+            <el-slides-item name="2"><div style="width:300px;height:200px;" class="bg-purple-light">2</div></el-slides-item>
+            <el-slides-item name="3"><div style="width:300px;height:200px;" class="bg-purple-dark">3</div></el-slides-item>
+        </el-slides>
+        </el-row>
+        <h1>步骤条</h1>
+        <el-button @click="stepClick">Next</el-button>
+        <el-steps :active="StepsActive">
+            <el-step title="注册"></el-step>
+            <el-step title="登录"></el-step>
+            <el-step title="购买"></el-step>
+        </el-steps>
+        <el-steps :active="StepsActive">
+            <el-step title="编辑" icon="edit" description="首先进行编辑首先进行编辑首先进行编辑首先进行编辑首先进行编辑"></el-step>
+            <el-step title="上传" icon="upload" description="然后进行上传"></el-step>
+            <el-step title="成功" icon="folder-checked" description="上传成功！"></el-step>
+        </el-steps>
+        <h1>拖拽</h1>
+        {{dragData}}
+        <el-drag-wrap :data.sync="dragData">
+            <el-drag-item v-for="(data,index) in dragData" :key="index" >
+                <div style="width:100px;height:100px;background-color:#abcdef;margin-bottom:10px;">{{data}}</div>
+            </el-drag-item>
+        </el-drag-wrap>
     </div>
 </template>
 
@@ -560,19 +693,47 @@ export default {
       height: 400,
       score:0,
       score1:2,
-      action:'http://localhost:9800/upload',
+      action:'http://47.114.135.161:8080/upload',
       method:'POST',
       accept:'image/jpg',
       name:'file',
       parseResponse: res => JSON.parse(res).url ,
       fileList:[],
       fileList1:[],
+      fileList2:[],
       showTip:'点击上传文件',
       handleRemove(file,fileList){
-          console.log(file,fileList)
+          let index = fileList.lastIndexOf(file)
+          fileList.splice(index,1)
+          console.log(fileList)
       },
       sizeLimit:1,
-    };
+      switchValue:false,
+      Cascader_data:[{
+          name:"广东",
+          children:[{name:"广州",children:[{name:"天河区"},{name:"南沙区"},{name:"黄浦区"},{name:"荔湾区"},{name:"越秀区"},{name:"从化区"},{name:"增城区"},{name:"白云区"},{name:"海珠区"}]},
+                    {name:"深圳",children:[{name:"南山区"},{name:"福田区"},{name:"罗湖区"}]},
+                    {name:"潮州",children:[{name:"湘桥区"},{name:"潮安区"},{name:"饶平县"}]}]
+        },{
+           name:"浙江",
+           children:[{name:"杭州",children:[{name:"上城区"},{name:"下城区"}]},
+                     {name:"宁波"}]
+        }],
+      Cascader_height:'200px',
+      Cascader_value:[],
+      slidesSelected:"1",
+      slidesSelected1:"1",
+      slidesSelected2:"1",
+      StepsActive:0,
+      stepClick:()=>{
+          if(this.StepsActive<=2){
+              this.StepsActive += 1
+          }else{
+              this.StepsActive = 0
+          }
+      },
+      dragData : [1,2,3,4,5,6,7]
+    }
   },
   methods: {
     handleClick(e) {
@@ -590,6 +751,50 @@ export default {
     deleteItem(item) {
       console.log(item);
     },
+    handleSuccess(){
+        this.$success({message:"这是一个好消息",showClose:true})
+    },
+    handleInfo(){
+        this.$info({message:'<i>这是一个信息</i>'})
+    },
+    handleWarning(){
+        this.$warning({message:'这是一个警告信息'})
+    },
+    handleError(){
+        this.$error({message:'这是一个错误信息'})
+    },
+    handleConfirm(){
+        this.$confirm("你确定要删除吗","提示",{
+            "confirmButtonText":"确定",
+            "cancelButtonText":"取消",
+            "type":"warning"
+        }).then(res => {this.$success({message:'成功删除'})})
+          .catch(err => {this.$info({message:'取消删除'})})
+    },
+    handleNotice(){
+        this.$confirm("你已经在使用ypa组件库了","提示",{
+            "confirmButtonText":'确定',
+            'type':'info'
+        }).then(res => {console.log('haha')})
+    },
+    handleWarn(){
+        this.$confirm("你的余额已不足，请及时充值","警告",{
+            "confirmButtonText":"充值",
+            "type":"error"
+        }).then(res => {this.$success({message:'充值成功'})})
+    },
+    handleNotify(){
+        this.$notify({
+            title:"提示",
+            message:"这是一条消息",
+            // showClose:true,
+            type:'success'
+        })
+    },
+    handleNotify1(){this.$notify({title:'提示',message:'左上消息',position:'top-left'})},
+    handleNotify2(){this.$notify({title:'提示',message:'左下消息',position:'bottom-left'})},
+    handleNotify3(){this.$notify({title:'提示',message:'右上消息',position:'top-right'})},
+    handleNotify4(){this.$notify({title:'提示',message:'右下消息',position:'bottom-right'})}
   },
 };
 </script>
@@ -609,5 +814,4 @@ export default {
   .bg-purple-light {
     background: #e5e9f2;
   }
-
 </style>

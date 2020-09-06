@@ -10,6 +10,10 @@
         color:$--upload-color;
         cursor: pointer;
         border-radius: 4px;
+        @include when(disabled){
+            cursor: not-allowed;
+            opacity: .5;
+        }
     }
     @include m(tip){
         color:$--upload-tip-color;

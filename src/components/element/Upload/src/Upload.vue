@@ -1,6 +1,6 @@
 <template>
     <div class="el-upload">
-        <div class="el-upload--main" @click="ClickUpload">
+        <div class="el-upload--main" :class="{'is-disabled':disabled}" @click="ClickUpload">
             <div><el-icon name="upload" class="el-icon--left"></el-icon>点击上传</div>
         </div>
         <div class="el-upload--tip" v-if="showTip">{{showTip}}</div>
@@ -47,23 +47,31 @@ export default {
         sizeLimit:Number,
         showTip:String,
         onRemove:Function,
+        disabled:{type:Boolean,default:false},
+        multiple:{type:Boolean,default:false}
     },
     methods:{
         ClickUpload(){
-            let Input = this.createInput();
-            // 创造一个Input
-            Input.addEventListener('change',()=>{
+            if(!this.disabled){
+                let Input = this.createInput();
+                // 创造一个Input
+                Input.addEventListener('change',()=>{
                 //监听change事件
                 this.UploadFile(Input.files)
                 Input.remove()
-            })
-            Input.click();
+                })
+                Input.click();
+            }else{
+                return false;
+            }
+            
         },
         createInput(){
             let Input = document.createElement('input');
             Input.type = 'file';
             Input.name = this.name;
             Input.accept = this.accept;
+            Input.multiple = this.multiple;
             this.$refs.temp.appendChild(Input);
             return Input
         },
@@ -85,34 +93,29 @@ export default {
                 // 逐个上传
                 let rawFile = rawFiles[i];
                 let newName = newNames[i];
-                // 查看文件是否超过文件大小限制
-                if(this.sizeLimit){
-                    let {size} = rawFile;
-                    if(size>this.sizeLimit){
-                        this.handleLargeFile(newName)
-                    }else{
-                        let formData = new FormData()
-                        formData.append(this.name,rawFile)
-                        // 如果没有超过文件大小限制，就进行上传
-                        this.upLoadForm(formData,newName,this.parseResponse)
-                    }
+                const file = this.fileList.filter(f => f.name === newName)[0]
+                if(this.sizeLimit && file.size>this.sizeLimit){
+                   continue 
                 }else{
-                    let formData = new FormData();
-                    formData.append(this.name,rawFile);
-                    // 进行文件上传并进行处理
-                    this.upLoadForm(formData,newName,this.parseResponse);
+                    let formData = new FormData()
+                    formData.append(this.name,rawFile)
+                    this.upLoadForm(formData,newName,this.parseResponse)
                 }
-            }
+              }
+              
             })
-            
         },
-        beforeUploadFiles(rawFiles,newName){
+        beforeUploadFiles(rawFiles,newNames){
             rawFiles = Array.from(rawFiles)
             
-            // 对重名的文件添加后缀
             let x = rawFiles.map((rawFile,index) => {
                 let {name,type,size} = rawFile;
-                return {name:newName[index],size,type,status:'uploading'}
+                // 查看文件是否超过文件大小限制
+                if(this.sizeLimit && size>this.sizeLimit){
+                    return {name:newNames[index],size,type,status:'large'}
+                }else{
+                    return {name:newNames[index],size,type,status:'uploading'}
+                }
             })
             this.$emit('update:fileList',[...this.fileList,...x])
             return true;
@@ -137,23 +140,12 @@ export default {
             fileListCopy.splice(index,1,fileCopy);
             this.$emit('update:fileList',fileListCopy)
         },
-        // 处理过大的文件
-        handleLargeFile(newName){
-            let file = this.fileList.filter(f => f.name === newName)[0]
-            let index = this.fileList.indexOf(file)
-            let fileCopy = JSON.parse(JSON.stringify(file))
-            fileCopy.status = 'large'
-            let fileListCopy = [...this.fileList]
-            fileListCopy.splice(index,1,fileCopy)
-            this.$emit('update:fileList',fileListCopy)
-        },
         generateName(name){
             while(this.fileList.filter(item => item.name === name).length > 0){
                 const lastIndex = name.lastIndexOf('.');
                 const nameItem = name.substring(0,lastIndex);
                 const suffix = name.substring(lastIndex);
                 name = `${nameItem}(1)${suffix}`;
-                console.log(name)
             }
             return name;
         },
@@ -182,7 +174,7 @@ transform: translateX(100px);
 }
 .v-enter-active,
 .v-leave-active {
-transition: all .5s;
+transition: transform .5s;
 }
 .v-leave,
 .v-enter-to {

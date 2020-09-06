@@ -1,0 +1,27 @@
+@import '../common/var.scss';
+@import '../mixins/mixins.scss';
+
+@include b(breadcrumb){
+    font-size: $--breadcrumb-font-size;
+    
+    .el-breadcrumb--item:last-child .el-breadcrumb--separator{
+        display: none;
+    }
+    @include m(text){
+        color:$--color-text-placeholder;
+        @include when(skip){
+            color:$--color-text-primary;
+            font-weight:500;
+            cursor: pointer;
+            &:hover{
+                color:$--color-primary;
+            }
+        }
+    }
+    @include m(separator){
+        margin:0 9px;
+        color:$--color-text-placeholder;
+        font-weight:700;
+    }
+    
+}
